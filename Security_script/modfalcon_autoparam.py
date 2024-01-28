@@ -12,7 +12,7 @@ References:
           /documents/call-for-proposals-final-dec-2016.pdf
 - [Pre17]: ia.cr/2017/480
 """
-from Crypto.Util.number import isPrime
+# from Crypto.Util.number import isPrime
 from math import sqrt, exp, log, pi, floor
 # For debugging purposes
 from sys import version_info
@@ -205,3 +205,14 @@ class ModFalcon:
         rep += "forgery_bitsec_c = " + str(self.forgery_bitsec_c) + "\n"
         rep += "forgery_bitsec_q = " + str(self.forgery_bitsec_q) + "\n"
         return rep
+
+
+if  __name__ == "__main__":
+    falcon512 = ModFalcon(d=512, n=1, target_bitsec=128)
+    print(falcon512)
+
+    falcon1024 = ModFalcon(d=1024, n=1, target_bitsec=256)
+    print(falcon1024)
+
+    modfalcon_2_512 = ModFalcon(d=512, n=2, target_bitsec=192)
+    print(modfalcon_2_512)
