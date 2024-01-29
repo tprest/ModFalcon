@@ -42,6 +42,13 @@ def delta_func(beta):
     return rep
 
 
+def dimensionsforfree(B):
+    """
+    d in [Duc18].
+    """
+    return round(B * log(4 / 3) / log(B / (2 * pi * exp(1))))
+
+
 class ModFalcon:
 
     def __init__(self, d, n, target_bitsec):
@@ -136,6 +143,8 @@ class ModFalcon:
             # Break once the right beta is found
             if (left_kr < right_kr):
                 break
+        # Dimensions for free [Ducas'18]
+        beta -= dimensionsforfree(beta)
         self.bkz_keyrec = beta
         self.keyrec_bitsec_c = floor(self.bkz_keyrec * 0.292)
         self.keyrec_bitsec_q = floor(self.bkz_keyrec * 0.265)
@@ -158,6 +167,8 @@ class ModFalcon:
             else:
                 k -= 1
                 break
+        # Dimensions for free [Ducas'18]
+        beta_min -= dimensionsforfree(beta_min)
         self.bkz_forgery = beta_min
         self.k_forgery = k
         self.forgery_bitsec_c = floor(self.bkz_forgery * 0.292)
